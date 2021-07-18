@@ -15,5 +15,3 @@ const prisma = (() => {
 })()
 
 export default prisma;
-
-export * from "@prisma/client";
