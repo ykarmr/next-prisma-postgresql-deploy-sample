@@ -9,6 +9,7 @@ import { PostProps } from '../../components/Post';
 import { useSession } from 'next-auth/client';
 import prisma from '../../lib/prisma';
 
+const url = process.env.NODE_ENV === "production" ? "https://next-prisma-postgresql-deploy-sample.vercel.app" : "http://localhost:3000"
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const post = await prisma.post.findUnique({
     where: {
@@ -26,21 +27,21 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 };
 
 async function publishPost(id: number): Promise<void> {
-  await fetch(`http://localhost:3000/api/publish/${id}`, {
+  await fetch(`${url}/api/publish/${id}`, {
     method: 'PUT',
   });
   await Router.push('/');
 }
 
 async function unPublishPost(id: number): Promise<void> {
-  await fetch(`http://localhost:3000/api/unPublish/${id}`, {
+  await fetch(`${url}/api/unPublish/${id}`, {
     method: 'PUT',
   });
   await Router.push('/');
 }
 
 async function deletePost(id: number): Promise<void> {
-  await fetch(`http://localhost:3000/api/post/${id}`, {
+  await fetch(`${url}/api/post/${id}`, {
     method: 'DELETE',
   });
   Router.push('/');
