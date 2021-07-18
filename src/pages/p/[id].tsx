@@ -3,11 +3,11 @@
 import React from 'react';
 import { GetServerSideProps } from 'next';
 import ReactMarkdown from 'react-markdown';
-import Layout from '../../components/Layout';
+import Layout from '../../../components/Layout';
 import Router from 'next/router';
-import { PostProps } from '../../components/Post';
+import { PostProps } from '../../../components/Post';
 import { useSession } from 'next-auth/client';
-import prisma from '../../lib/prisma';
+import prisma from '../../../lib/prisma';
 
 const url = process.env.NODE_ENV === "production" ? "https://next-prisma-postgresql-deploy-sample.vercel.app" : "http://localhost:3000"
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
